@@ -68,7 +68,7 @@ export const initState = {
       size: "normal",
     },
     openai: {
-      baseUrl: "http://localhost:8080/wiki/chat",
+      baseUrl: "http://localhost:8087",
       organizationId: "",
       temperature: 1,
       model: "gpt-3.5-turbo",

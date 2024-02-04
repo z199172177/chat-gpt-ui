@@ -16,8 +16,20 @@ export async function* streamAsyncIterable(stream) {
   }
 }
 
-export const fetchBaseUrl = (baseUrl) =>
-  baseUrl || "https://api.openai.com/v1/chat/completions";
+export const fetchBaseUrl = (baseUrl, currentChat) => {
+  let api;
+  if (currentChat === 0) {
+    api = "/wiki/conversation";
+  } else if (currentChat === 1) {
+    api = "/wiki/chat";
+  } else if (currentChat === 2) {
+    api = "/wiki/generatorPost";
+  } else if (currentChat === 3) {
+    api = "/wiki/recommend";
+  }
+  return baseUrl + api;
+};
+
 
 export const fetchHeaders = (options = {}) => {
   const { organizationId, apiKey } = options;
@@ -63,7 +75,7 @@ export const fetchAction = async ({
   currentChat
 }) => {
   const { baseUrl, ...rest } = options;
-  const url = fetchBaseUrl(baseUrl);
+  const url = fetchBaseUrl(baseUrl, currentChat);
   const headers = fetchHeaders({ ...rest });
   const body = JSON.stringify(fetchBody({ messages, options, currentChat }));
   const response = await fetch(url, {

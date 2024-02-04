@@ -14,6 +14,7 @@ export default function action(state, dispatch) {
     },
     async sendMessage() {
       const { typeingMessage, options, chat, is, currentChat } = state;
+      console.log("currentChat:", currentChat);
       if (typeingMessage?.content) {
         const newMessage = {
           ...typeingMessage,
@@ -36,6 +37,7 @@ export default function action(state, dispatch) {
             }),
             options: options.openai,
             signal: controller.signal,
+            currentChat: currentChat,
             onMessage(content) {
               newChat.splice(currentChat, 1, {
                 ...chat[currentChat],

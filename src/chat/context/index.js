@@ -12,7 +12,8 @@ import { initState } from "./initState";
 export const ChatContext = createContext(null);
 
 export const ChatProvider = ({ children }) => {
-  const init = JSON.parse(localStorage.getItem("SESSIONS")) || initState;
+  // const init = JSON.parse(localStorage.getItem("SESSIONS")) || initState;
+  const init = initState;
   const [state, dispatch] = useReducer(reducer, init);
   const actionList = action(state, dispatch);
   const latestState = useRef(state);

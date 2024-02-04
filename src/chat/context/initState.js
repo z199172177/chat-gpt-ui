@@ -3,43 +3,56 @@ export const initState = {
   current: 0,
   chat: [
     {
-      title: "Generate useLocalStorage",
-      id: 321123123,
+      title: "ChatGPT",
+      id: 1000000,
       ct: "2023-12-12",
       messages: [
         {
-          content: "Hello, I'm ChatGPT! Ask me anything!",
+          id: 10000001,
+          role: "user",
           sentTime: "1682827639323",
-          role: "user",
-          id: 123,
+          content: "Hello, I'm ChatGPT! Ask me anything!",
         },
       ],
     },
     {
-      title: "Generate a React hooks  useLocalStorage",
+      title: "家装百科问答",
       ct: "2023-12-12",
-      id: 92839,
+      id: 2000000,
       messages: [
         {
-          id: 1682511616366,
-          sentTime: "1682827639313",
+          id: 20000001,
           role: "user",
-          content: "React写一个Modal组件\n",
-        },
-        {
-          id: 1682511616366,
-          sentTime: "1681827632313",
-          role: "assistant",
-          content:
-            '以下是一个简单的React Modal组件示例：\n\n```jsx\nimport React, { useState } from \'react\';\n\nconst Modal = ({ isOpen, onClose, children }) => {\n  const [isModalOpen, setIsModalOpen] = useState(isOpen);\n\n  const handleClose = () => {\n    setIsModalOpen(false);\n    onClose();\n  };\n\n  return (\n    <>\n      {isModalOpen && (\n        <div className="modal">\n          <div className="modal-content">\n            <span className="close" onClick={handleClose}>\n              &times;\n            </span>\n            {children}\n          </div>\n        </div>\n      )}\n    </>\n  );\n};\n\nexport default Modal;\n```\n\n在这个组件中，我们使用useState钩子来跟踪模态框是否打开。当isOpen prop改变时，我们更新状态以反映新值。\n\n我们还定义了一个叫做handleClose的函数，它将关闭模态框并调用onClose回调函数（如果有）。\n\n最后，我们返回一个包含模态框内容的div元素，并根据isModalOpen状态决定是否呈现该元素。',
-        },
+          sentTime: "1682827639313",
+          content: "你好，我是一个关于家装百科只是的AI程序",
+        }
       ],
     },
     {
-      title: "ex",
+      title: "家装文章生成",
       ct: "2032-12-23",
-      id: 2381923,
-      messages: [],
+      id: 3000000,
+      messages: [
+        {
+          id: 30000001,
+          role: "user",
+          sentTime: "1682827639313",
+          content: "你好，我可以生成装修方面的文章，请输入文章的简介",
+        }
+      ],
+    },
+    {
+      title: "家装产品推荐",
+      ct: "2032-12-23",
+      id: 4000000,
+      messages: [
+        {
+          id: 40000001,
+          role: "user",
+          sentTime: "1682827639313",
+          content: "你好，我可以根据你的商品购买记录，为你提供家装产品或服务，请输入你的个人信息。",
+        }
+      ],
     },
   ],
   currentChat: 0,
@@ -55,7 +68,7 @@ export const initState = {
       size: "normal",
     },
     openai: {
-      baseUrl: "",
+      baseUrl: "http://localhost:8080/wiki/chat",
       organizationId: "",
       temperature: 1,
       model: "gpt-3.5-turbo",

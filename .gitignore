@@ -14,3 +14,10 @@ node_modules/
 .Trashes
 ehthumbs.db
 Thumbs.db
+/.idea/.gitignore
+/.idea/chat-gpt-ui.iml
+/.idea/compiler.xml
+/.idea/misc.xml
+/.idea/modules.xml
+/.idea/inspectionProfiles/Project_Default.xml
+/.idea/vcs.xml

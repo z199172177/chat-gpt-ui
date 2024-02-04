@@ -40,9 +40,10 @@ export const throwError = async (response) => {
   }
 };
 
-export const fetchBody = ({ options = {}, messages = [] }) => {
+export const fetchBody = ({ options = {}, messages = [], currentChat }) => {
   const { top_p, n, max_tokens, temperature, model, stream } = options;
   return {
+    currentChat,
     messages,
     stream,
     n: 1,
@@ -59,11 +60,12 @@ export const fetchAction = async ({
   messages = [],
   options = {},
   signal,
+  currentChat
 }) => {
   const { baseUrl, ...rest } = options;
   const url = fetchBaseUrl(baseUrl);
   const headers = fetchHeaders({ ...rest });
-  const body = JSON.stringify(fetchBody({ messages, options }));
+  const body = JSON.stringify(fetchBody({ messages, options, currentChat }));
   const response = await fetch(url, {
     method,
     headers,
@@ -76,15 +78,18 @@ export const fetchAction = async ({
 export const fetchStream = async ({
   options,
   messages,
+  currentChat,
   onMessage,
   onEnd,
   onError,
   onStar,
 }) => {
   let answer = "";
-  const { controller, signal } = setAbortController();
-  console.log(signal, controller);
-  const result = await fetchAction({ options, messages, signal }).catch(
+  const {controller, signal} = setAbortController();
+  console.log("signal:", signal);
+  console.log("controller:", controller);
+  console.log("currentChat:", currentChat);
+  const result = await fetchAction({ options, messages, signal, currentChat }).catch(
     (error) => {
       onError && onError(error, controller);
     }
@@ -97,9 +102,9 @@ export const fetchStream = async ({
   }
 
   const parser = createParser((event) => {
-    console.log(event.data);
     if (event.type === "event") {
       if (event.data === "[DONE]") {
+        onEnd();
         return;
       }
       let data;
@@ -110,7 +115,6 @@ export const fetchStream = async ({
       }
       if ("content" in data.choices[0].delta) {
         answer += data.choices[0].delta.content;
-        console.log(data);
         onMessage && onMessage(answer, controller);
       }
     }

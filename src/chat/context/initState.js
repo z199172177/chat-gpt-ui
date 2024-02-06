@@ -3,7 +3,7 @@ export const initState = {
   current: 0,
   chat: [
     {
-      title: "ChatGPT",
+      title: "原生 ChatGPT",
       id: 1000000,
       ct: "2023-12-12",
       messages: [
@@ -11,7 +11,7 @@ export const initState = {
           id: 10000001,
           role: "user",
           sentTime: "1682827639323",
-          content: "Hello, I'm ChatGPT! Ask me anything!",
+          content: "你好，我是原生的ChatGPT，你可以问我任何问题，我会用流式会话的方式响应",
         },
       ],
     },
@@ -24,7 +24,7 @@ export const initState = {
           id: 20000001,
           role: "user",
           sentTime: "1682827639313",
-          content: "你好，我是一个关于家装百科只是的AI程序",
+          content: "你好，我是一个关于家装百科只是的AI程序，你可以问我关于家居家装相关的问题，我会根据本地资料库的内容回答你的提问题。回答过程需要一点时间，请耐心等待。",
         }
       ],
     },
@@ -37,7 +37,7 @@ export const initState = {
           id: 30000001,
           role: "user",
           sentTime: "1682827639313",
-          content: "你好，我可以生成装修方面的文章，请输入文章的简介",
+          content: "你好，我可以生成装修方面的文章，请告诉你对文章的要求，包括文章标题、内容关键字、文章简介说明等。",
         }
       ],
     },
@@ -50,7 +50,7 @@ export const initState = {
           id: 40000001,
           role: "user",
           sentTime: "1682827639313",
-          content: "你好，我可以根据你的商品购买记录，为你提供家装产品或服务，请输入你的个人信息。",
+          content: "你好，我可以根据你的商品购买记录，为你提供家装产品或服务，请输入推荐信息的关键字。例如：卧室、装修、小电器。",
         }
       ],
     },
@@ -68,11 +68,12 @@ export const initState = {
       size: "normal",
     },
     openai: {
-      baseUrl: "http://localhost:8087",
+      baseUrl: "http://11.142.39.76",
+      // baseUrl: "http://localhost:8087",
       organizationId: "",
       temperature: 1,
       model: "gpt-3.5-turbo",
-      apiKey: "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",
+      apiKey: "sk-",
       max_tokens: 2048,
       n: 1,
       stream: true,

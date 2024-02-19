@@ -98,9 +98,6 @@ export const fetchStream = async ({
 }) => {
   let answer = "";
   const {controller, signal} = setAbortController();
-  console.log("signal:", signal);
-  console.log("controller:", controller);
-  console.log("currentChat:", currentChat);
   const result = await fetchAction({ options, messages, signal, currentChat }).catch(
     (error) => {
       onError && onError(error, controller);
